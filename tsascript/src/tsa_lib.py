@@ -179,7 +179,7 @@ def add_record(index, row, engine, metadata):
     # accessing data from the tuple
     date = row[0]
     # formatting date according to ISO 8601
-    date = dt.datetime.strptime(date, "%m/%d/%Y").date().isoformat()
+    date = dt.datetime.strptime(date, "%Y-%m-%d").date().isoformat()
 
     hour = int(row[1].split(":")[0])
     code = str(row[2])
@@ -191,7 +191,7 @@ def add_record(index, row, engine, metadata):
         chk = re.sub(r'[^a-zA-Z0-9\n\.]', " ", chk)
         chk = re.sub(" ", "_", chk)
 
-    pmis = int("".join(row[4].split(',')))
+    pmis = row[4]
 
     # checking to see if the airport is already in the database, adding it if not
     if f"{code}_tbl" in metadata.tables.keys():
