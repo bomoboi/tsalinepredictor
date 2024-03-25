@@ -1,3 +1,5 @@
 tsalp/
+.venv/
 **/__pycache__/**
 **/*.sqlite3
+**/pyrightconfig.json
