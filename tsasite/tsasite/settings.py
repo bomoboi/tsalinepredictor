@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'predictor.apps.PredictorConfig'
+    'predictor.apps.PredictorConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
