@@ -1,0 +1,125 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2708
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 @import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur|Poppins|');\
+\
+body \{\
+  background-color: white;\
+  background-size: 18px;\
+  text-align: left;\
+  margin: 0;\
+  font-size: 12px;\
+  font-family: 'Share';\
+\}\
+\
+.banner \{\
+  background-color: #01105B;\
+  height: 65px;\
+  width: 100%;\
+  top: 0;\
+\}\
+\
+.banner2 \{\
+  background-color: #01105B;\
+  height: 65px;\
+  position: fixed;\
+  width: 100%;\
+  bottom: 0;\
+\}\
+\
+.wrapper \{\
+  max-width: 550px;\
+  margin: 75px auto;\
+  padding: 20px;\
+  border: 1px solid #ccc;\
+  border-radius: 30px;\
+  background: linear-gradient(to top, #007EB6 0%, #001660 100%);\
+  height: 60vh;\
+\}\
+\
+.wrapper h2 \{\
+  font-size: 30px;\
+  color: white;\
+  text-align: center;\
+  font-family: "Share";\
+\}\
+\
+.wrapper .input-container \{\
+  margin-bottom: 10px;\
+  display: flex;\
+  flex-direction: column;\
+  align-items: center;\
+\}\
+\
+.input-container input[type="text"],\
+.input-container input[type="password"],\
+.input-container input[type="id"] \{\
+  flex: 1;\
+  border: none;\
+  background: none;\
+  border-bottom: 2px solid white;\
+  border-radius: 1px;\
+  padding: 30px 0;\
+  font-size: 20px;\
+  font-family: 'Share';\
+  width: 350px;\
+  text-align: center;\
+  color: white;\
+\}\
+\
+.input-container input[type="text"]::placeholder,\
+.input-container input[type="password"]::placeholder,\
+.input-container input[type="id"]::placeholder \{\
+  color: white;\
+\}\
+\
+.login,\
+.guest \{\
+  background-color: transparent;\
+  color: white;\
+  font-family: share;\
+  border: 1px solid white;\
+  padding: 1px 10px;\
+  border-width: 1px;\
+  text-align: 10px;\
+  text-decoration: none;\
+  font-size: 25px;\
+  cursor: pointer;\
+  border-radius: 600px;\
+  box-shadow: none;\
+  margin-top: 35px;\
+  transition: transform 0.3s ease;\
+\}\
+\
+.login:hover,\
+.guest:hover \{\
+  transform: scale(1.1); \
+\}\
+\
+.guest \{\
+  font-size: 35px;\
+  border-color: white;\
+  margin-bottom: 100px;\
+  margin-left: -5px;\
+  margin-top: 25px;\
+\}\
+\
+.button-input \{\
+  display: flex;\
+  flex-direction: row;\
+\}\
+\
+.img \{\
+  position: fixed;\
+  top: 0;\
+  bottom: 0;\
+  z-index: -1;\
+  border-radius: 25px;\
+  overflow: hidden;\
+  opacity: 0.5;\
+\}\
+}
