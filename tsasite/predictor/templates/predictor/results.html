@@ -1,0 +1,30 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TSA Line Predictor | Results</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico in the root directory -->
+
+</head>
+
+<body>
+    {{ times|json_script:"times" }}
+    {{ avgs|json_script:"avgs" }}
+    <div class="header">
+        <h1>Results</h1>
+    </div>
+    <div class="results">
+        <p>Your result rate is {{ result }} passengers/hour.</p>
+        <div id="container" style="width:50%; height:20em;"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    {% load static %}
+    <script src={% static '/predictor/histogram.js' %}></script>
+</body>
+
+</html>
