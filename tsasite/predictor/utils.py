@@ -2,17 +2,6 @@ from .models import Record, Airport
 from django.db.models import Avg
 from datetime import datetime, timedelta
 
-"""
-To get the histogram of how this time compares to other times:
-We need the data for the time we're at
-We also need the data for the surrounding times
-    which should be variable b/c it would b nice to
-    reuse in the agent view
-So we need to get the records for the day we're on
-for all three years + the records for surrounding times
-
-"""
-
 def get_records(date: datetime,
                 airport: Airport,
                 checkpoint: str,
@@ -47,5 +36,4 @@ def get_records(date: datetime,
         # make sure the central value is highlighted in a different color
     avg_dict[date.strftime("%I %p").lower()] = {"y": avg_dict[date.strftime("%I %p").lower()],
                                                     "color": "pink"}
-    print(avg_dict)
     return avg_dict
