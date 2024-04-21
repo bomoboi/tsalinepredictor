@@ -1,0 +1,36 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>{% block title %}TSA Line Predictor{% endblock title%}</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% tailwind_css %}
+	</head>
+
+	<body class="bg-gray-50 font-sans leading-normal tracking-normal">
+		<header>
+				<div class="banner">
+					<h1 class="text-3xl font-bold">TSA Line Predictor</h1>
+				</div>
+			</header>
+
+			<main>
+				<div class="content-container mx-auto">
+					{% block content %}{% endblock content %}
+				</div>
+			</main>
+
+			<footer>
+				<div class="footer">
+					<p>🄯 TLP Inc.</p>
+				</div>
+			</footer>
+
+			<header>
+
+		</header>
+		</div>
+	</body>
+</html>

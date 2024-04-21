@@ -1,28 +1,26 @@
 <!doctype html>
-<html class="no-js" lang="">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>TSA Line Predictor | Auth</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% block title %}TSA Line Predictor | Authenticate{% endblock title %}
 
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
+{% block content %}
+  <div class="login-container">
+    <h2>Login</h2>
 
-</head>
+    <form method="post" id="login-form" action="{% url 'auth' %}">
+      {% csrf_token %}
+      <fieldset class="flex items-center">
+        <div class="fieldWrapper">
+          {{ form.agent_id.as_field_group }}
+        </div>
+        <div class="fieldWrapper">
+          {{ form.agent_password.as_field_group }}
+        </div>
+        <input type="hidden" name="next" value="{{request.GET.next}}">
+        <input id="submit" type="submit" value="Log In">
+      </fieldset>
+      {{ form.non_field_errors }}
+    </form>
 
-<body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">
-            You are using an <strong>outdated</strong> browser. Please
-            <a href="http://browsehappy.com/">upgrade your browser</a> to improve
-            your experience.
-            </p>
-        <![endif]-->
-
-
-</body>
-
-</html>
+  <button id="redirect" type="button">Go Back</button>
+{% endblock content %}

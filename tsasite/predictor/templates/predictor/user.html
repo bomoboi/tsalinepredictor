@@ -12,7 +12,11 @@
 
 <body>
 <h1>TSA Line Predictor</h1>
-<p>oooh wah ah ah ah</p>
+<form action={% url 'user' %} method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Submit">
+</form>
 </body>
 
 </html>
