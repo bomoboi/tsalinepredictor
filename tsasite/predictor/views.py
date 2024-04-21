@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from django.template import loader
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
@@ -8,20 +9,17 @@ from .utils import get_records
 from .models import Airport
 from .forms import AuthForm, UserForm
 
-@login_required
-def agent(request):
-    return HttpResponse(b"Hello, World!")
+@login_required(login_url="/predictor/auth/")
+def simulator(request):
+    return HttpResponse(b"Hello, Simulator!")
 
 def auth(request):
-
-    if request.method == "POST":
-        form = AuthForm(request.POST)
-
-        if form.is_valid():
-            return HttpResponseRedirect("/simulator/")
-
-    else:
-        form = AuthForm()
+    form = AuthForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        agent = form.login(request)
+        if agent is not None:
+            login(request, agent)
+            return redirect(request.POST.get('next'))
 
     return render(request, "predictor/auth.html", {"form": form})
 
@@ -34,7 +32,6 @@ def user(request):
             chk = form.cleaned_data["checkpoint"]
             ap = form.cleaned_data["ap"]
             records = get_records(dt,ap,chk, 1)
-            print(records)
 
             context  = {"result": records[dt.strftime("%I %p").lower()]['y'],
                "times": list(records.keys()),
