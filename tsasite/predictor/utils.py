@@ -1,17 +1,20 @@
 from .models import Record, Airport
+from typing import Union
 from django.db.models import Avg
 from datetime import datetime, timedelta
 
 def get_records(date: datetime,
                 airport: Airport,
-                checkpoint: str,
-                var_hour: int):
+                var_hour: int,
+                checkpoint: Union[str,None] = None):
 
     # gets the initial QuerySet
     qs = Record.objects.filter(
         ap=airport
-    ).filter(
-        checkpoint=checkpoint)
+    )
+    if checkpoint:
+        qs = qs.filter(
+                checkpoint=checkpoint)
 
     avg_dict = {}
     for h in range(-var_hour, var_hour+1):
@@ -25,7 +28,7 @@ def get_records(date: datetime,
         ).filter(
             date__day=filter_date.day
         ).filter(
-            date__year__lt=filter_date.year
+            date__year__lte=filter_date.year
         )
         # creates a dictionary where the keys are in the format 10 am, 11am ,etc
         # and the values are the average time for that hour
