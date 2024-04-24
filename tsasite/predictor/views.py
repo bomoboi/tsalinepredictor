@@ -1,17 +1,20 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth import authenticate, login
-from django.contrib import messages
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from datetime import datetime
 
 from .utils import get_records
-from .models import Airport
-from .forms import AuthForm, UserForm
+from .models import Airport, Record
+from .forms import AuthForm, UserForm, SimForm
 
-@login_required(login_url="/predictor/auth/")
-def simulator(request):
-    return HttpResponse(b"Hello, Simulator!")
+def home(request):
+    return render(request, "predictor/home.html")
+
+def logout_view(request):
+    logout(request)
+    return redirect(reverse('home'))
 
 def auth(request):
     form = AuthForm(request.POST or None)
@@ -29,9 +32,8 @@ def user(request):
 
         if form.is_valid():
             dt = form.cleaned_data["date"]
-            chk = form.cleaned_data["checkpoint"]
-            ap = form.cleaned_data["ap"]
-            records = get_records(dt,ap,chk, 1)
+            ap = Airport.objects.get(pk=form.cleaned_data["ap"])
+            records = get_records(dt, ap, var_hour=2)
 
             context  = {"result": records[dt.strftime("%I %p").lower()]['y'],
                "times": list(records.keys()),
@@ -42,6 +44,32 @@ def user(request):
         form = UserForm()
     return render(request, "predictor/user.html", {"form": form})
 
+@login_required(login_url="/predictor/auth/")
+def agent(request):
+    if request.method == "POST":
+        print("POST")
+        form = SimForm(request.POST)
+
+        if form.is_valid():
+            dt = form.cleaned_data["date"]
+            ap = Airport.objects.get(pk=form.cleaned_data["ap"])
+            num_agents = form.cleaned_data["num_agents"]
+            records = get_records(dt, ap, var_hour=2)
+
+            context  = {"result": records[dt.strftime("%I %p").lower()]['y'],
+                "times": list(records.keys()),
+                        "avgs": list(records.values()),
+                        "agents": num_agents,
+                        "ap": form.cleaned_data["ap"]}
+
+            return render(request, "predictor/sim.html", context)
+    else:
+        print("NOT POST")
+        form = SimForm()
+    return render(request, "predictor/agent.html", {"form": form})
+
+
+"""
 def results(request):
 
     ap = Airport.objects.get(pk="LAX")
@@ -52,5 +80,6 @@ def results(request):
                "times": list(records.keys()),
                "avgs": list(records.values())}
 
-    return HttpResponse(f"")
+    return HttpResponse(f"Results page")
     #return render(request, "predictor/results.html", context)
+"""
