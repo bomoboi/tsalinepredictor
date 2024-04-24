@@ -3,7 +3,7 @@ const avgs = JSON.parse(document.getElementById('avgs').textContent);
 
 $(function () {
 
-  $('#container').highcharts({
+  $('#chart-container').highcharts({
         chart: {
             type: 'column',
             backgroundColor: '#fff'
