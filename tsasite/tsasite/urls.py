@@ -16,8 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from predictor.views import home, logout_view
 
 urlpatterns = [
     path("predictor/", include("predictor.urls")),
     path('admin/', admin.site.urls),
+    path('', home, name='home'),
+    path('logout/', logout_view, name="logout"),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]
