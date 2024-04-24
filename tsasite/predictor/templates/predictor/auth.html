@@ -1,0 +1,42 @@
+<!doctype html>
+{% extends "base.html" %}
+
+{% block title %}TSA Line Predictor | Authenticate{% endblock title %}
+
+{% block content %}
+    {% load static %}
+    <div class="bg-cover bg-auth bg-no-repeat overflow-hidden
+                bottom-0 left-0 top-0 right-0
+                w-full flex flex-row items-center justify-center">
+
+      <div class="m-4 p-2 bg-gradient-to-tr from-blue-600 to-blue-950
+                  md:w-max md:h-max rounded-xl">
+
+        <form class=" p-8 sm:p-12 flex flex-col justify-between gap-8 w-fill items-center"
+              method="post" id="login-form" action="{% url 'auth' %}">
+
+          <h2 class="text-2xl">Agent Login</h2>
+          {% csrf_token %}
+          <div class="fieldWrapper">
+            {{ form.agent_id.as_field_group }}
+          </div>
+          <div class="fieldWrapper">
+            {{ form.agent_password.as_field_group }}
+          </div>
+          <input type="hidden" name="next" value="{{request.GET.next}}">
+          <input class="transition ease-in-out
+                        border-2 border-white hover:border-blue-300
+                        hover:scale-110
+                        rounded-full py-2 px-4
+                        duration 200"id="submit" type="submit" value="Log In">
+          <div class="transition ease-in-out
+                        border-2 border-white hover:border-blue-300
+                        hover:scale-110
+                        rounded-full py-2 px-4
+                      duration 200">
+            <a href="{% url 'home' %}" class="hover:scale-110 px-4 py-2">Go Back</a>
+          </div>
+          {{ form.non_field_errors }}
+        </form>
+
+{% endblock content %}
