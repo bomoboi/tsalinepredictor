@@ -4,3 +4,4 @@ tsalp/
 **/*.sqlite3
 **/pyrightconfig.json
 **/migrations/**
+**/migrations/*

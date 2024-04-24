@@ -9,7 +9,7 @@ class Airport(models.Model):
         return f"{self.iata_code}/{self.icao_code}: {self.ap_name}"
 
 class Record(models.Model):
-    date = models.DateTimeField("the date of the record")
+    date = models.DateTimeField("The date and time of the record")
     pax = models.PositiveSmallIntegerField("the number of passengers given by the record")
     ap = models.ForeignKey(Airport, on_delete=models.CASCADE, verbose_name="the airport the record belongs to")
     checkpoint = models.CharField("the name of the checkpoint in the record", max_length=64)
