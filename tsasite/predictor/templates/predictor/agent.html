@@ -1,4 +1,3 @@
-<!doctype html>
 {% extends 'base.html' %}
 
 {% block title %}TSA Line Predictior | Calculator{% endblock title %}
@@ -8,7 +7,7 @@
     <form class="p-8 bg-gradient-to-tr from-indigo-400 to-blue-600
                  flex flex-col
                  justify-between gap-8 w-fill items-center
-                 rounded-lg" action={% url 'user' %} method="post">
+                 rounded-lg" action={% url 'agent' %} method="post">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         {% csrf_token %}
@@ -19,6 +18,9 @@
 
         <div>
             {{ form.date.as_field_group }}
+        </div>
+        <div>
+            {{ form.num_agents.as_field_group}}
         </div>
         <input class="transition ease-in-out border-2
                       border-white hover:border-blue-300
@@ -34,6 +36,7 @@
                      px-8 py-4">Back
             </a>
         </div>
+
         {% load static %}
         <script src={% static '/predictor/selection.js' %}></script>
     </form>
