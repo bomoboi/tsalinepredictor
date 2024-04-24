@@ -1,0 +1,42 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>{% block title %}TSA Line Predictor{% endblock title%}</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% tailwind_css %}
+	</head>
+
+	<body class="font-sans bg-indigo-50
+				 flex flex-col text-indigo-50
+				 h-screen w-sceen">
+		{% block header %}
+		<header>
+				<div class="flex flex-row mx-auto bg-blue-950
+							top-0 w-full max-w-screen p-2">
+					<h1 class="text-3xl flex-grow font-bold">TSA Line Predictor</h1>
+					{% if user.is_authenticated %}<button class="transition ease-in-out
+																 justify-end border-white
+																 border-2 py-1 px-4
+																 hover:border-red-600
+																 rounded-full"><a href="{% url 'logout' %}">Logout</a></button>{% endif %}
+				</div>
+		</header>
+		{% endblock header %}
+		<main class="flex flex-grow max-h-screen h-sceen max-w-screen w-screen">
+			{% block content %}
+			{% endblock content %}
+		</main>
+
+		<footer>
+			<div class="flex flex-row mx-auto bg-blue-950
+						bottom-0 w-full max-w-screen p-2">
+				<!-- I know inline css is bad design shhh-->
+				<p class="flex-none" style="font-weight:500; opacity:1; vertical-align:middle; display:inline-block; transform: rotate(180deg);">&copy;</p>
+				<p class="pl-1 object-fill">2024 TLP Inc.</p>
+			</div>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+{% extends 'base.html' %}
+
+{%block title%}TSA Line Predictor | Results{%endblock title%}
+
+{% block content %}
+    {{ times|json_script:"times" }}
+    {{ avgs|json_script:"avgs" }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    {% load static %}
+    <script src={% static '/predictor/histogram.js' %}></script>
+<div class="w-full flex flex-col items-center justify-center mt-5">
+    <div class="results justify-self-start flex flex-row items-center mb-20">
+        <p class="text-black text-4xl">Your result rate is: </p>
+        <p class="text-rose-300 text-6xl px-2">{{ result }}</p>
+        <p class="text-black text-4xl">passengers/hour.</p>
+    </div>
+    <div id="chart-container" class="w-2/3 h-2/3 border-2 border-black rounded-2xl">
+    </div>
+    <div class="hover:scale-110 m-12
+                transition ease-in-out duration 200">
+        <a href="{% url 'user' %}"
+           class="text-black p-4 border-2 border-black
+                  rounded-full hover:scale-110 hover:border-blue-300">Enter another Airport</a>
+    </div>
+</div>
+{% endblock content %}
+
+</html>
